@@ -3,6 +3,9 @@ import { useLoaderData } from "@remix-run/react"
 import { Mozz } from "~/components/Mozz"
 import { trpc } from "~/lib/trpc"
 import { createTrpcServer } from "~/server/trpc"
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar"
+import { AppSidebar } from "~/components/app-sidebar"
+ 
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,7 +25,6 @@ export const loader = async (ctx: LoaderFunctionArgs) => {
     message,
   }
 }
-
 export default function Index() {
   const data = useLoaderData<typeof loader>()
   const messageQuery = trpc.hello.useQuery(undefined, {
@@ -31,6 +33,12 @@ export default function Index() {
 
   return (
     <>
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <SidebarTrigger />
+        </main>
+      </SidebarProvider>
       <Mozz />
       <div className="grid h-dvh place-items-center text-3xl">
         <div>Hello {messageQuery.data}</div>
