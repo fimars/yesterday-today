@@ -2,11 +2,8 @@
 import animate from "tailwindcss-animate"
 import { iconsPlugin, getIconCollections } from "@egoist/tailwindcss-icons"
 import fs from "fs"
-import path from "path"
 
-const pkg = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "./package.json"), "utf-8"),
-)
+const pkg = JSON.parse(fs.readFileSync("./package.json", "utf-8"))
 /** @type {any[]} */
 const collectionNames = Object.keys(pkg.devDependencies)
   .filter((name) => name.startsWith("@iconify-json/"))

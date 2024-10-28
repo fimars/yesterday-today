@@ -1,5 +1,6 @@
 import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
+import { Mozz } from "~/components/Mozz"
 import { trpc } from "~/lib/trpc"
 import { createTrpcServer } from "~/server/trpc"
 
@@ -29,8 +30,11 @@ export default function Index() {
   })
 
   return (
-    <div className="grid h-dvh place-items-center text-3xl">
-      <div>Hello {messageQuery.data}</div>
-    </div>
+    <>
+      <Mozz />
+      <div className="grid h-dvh place-items-center text-3xl">
+        <div>Hello {messageQuery.data}</div>
+      </div>
+    </>
   )
 }
